@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Icon, Input, Button } from 'react-native-elements';
-import { KeyboardAvoidingView, keyboardVerticalOffset,ScrollView,View, Text, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import styles from './style';
 
 function ResetPasswordSuccess({ navigation}) {

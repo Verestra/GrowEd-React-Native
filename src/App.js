@@ -11,8 +11,8 @@ import ResetPassword from './screens/Reset-Password/ResetPassword';
 import ResetPasswordOtp from './screens/Reset-Password/ResetPasswordOtp';
 import ResetPasswordNew from './screens/Reset-Password/ResetPasswordNew';
 import ResetPasswordSuccess from './screens/Reset-Password/ResetPasswordSucces';
-
-
+import Profile from './screens/Profile'
+import FooterTab from './components/Footer'
 
  export default class App extends Component 
 {  
@@ -54,6 +54,8 @@ import ResetPasswordSuccess from './screens/Reset-Password/ResetPasswordSucces';
                     <Screen  name="ResetPasswordOtp" component={ResetPasswordOtp} />
                     <Screen  name="ResetPasswordNew" component={ResetPasswordNew} />
                     <Screen  name="ResetPasswordSuccess" component={ResetPasswordSuccess} />
+                    <Screen  name="Profile" component={Profile} />
+                    <Screen  name="FooterTab" component={FooterTab} />
                   </Navigator>
                   {  
                   (this.state.isVisible === true) ? Splash_Screen : null  
