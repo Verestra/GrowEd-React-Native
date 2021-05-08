@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { Input, Button } from 'react-native-elements';
-import { KeyboardAvoidingView, keyboardVerticalOffset, View, Text, Image } from 'react-native';
+import { KeyboardAvoidingView, keyboardVerticalOffset, ScrollView,View, Text, Image } from 'react-native';
 import styles from './style';
 
 
 
-function Login({ navigation}) {
+function Register({ navigation}) {
     return (
       <View style={styles.container}>
-        
-        <Text style={styles.login}>Login</Text>
-        <View style={styles.inputContent}>
+        <Text style={styles.register}>Register</Text>
+        <ScrollView style={styles.inputContent}>
         <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={keyboardVerticalOffset}>
             <Input inputContainerStyle={styles.inputContainerStyle}
-            label={"Username or Email"}
+            label={"Username"}
+            labelStyle={styles.labelStyle}/>
+            <Input inputContainerStyle={styles.inputContainerStyle}
+            label={"Email"}
             labelStyle={styles.labelStyle}/>
             <Input
             inputContainerStyle={styles.inputContainerStyle}
@@ -22,11 +24,17 @@ function Login({ navigation}) {
                 rightIcon={{ type: 'font-awesome', name: 'eye' }}
                 rightIconContainerStyle={styles.rightIconStyle}
                 secureTextEntry={true}
+            /><Input
+            inputContainerStyle={styles.inputContainerStyle}
+            label={"Confirm Password"}
+            labelStyle={styles.labelStyle}
+                rightIcon={{ type: 'font-awesome', name: 'eye' }}
+                rightIconContainerStyle={styles.rightIconStyle}
+                secureTextEntry={true}
             />
-            <Text onPress={() => navigation.navigate('ResetPassword')} style={styles.forgotPass}>Forgot password?</Text>
             <Button
-            title="Login"
-            buttonStyle={styles.buttonLogin}
+            title="Register"
+            buttonStyle={styles.buttonRegister}
             containerStyle={styles.buttonContent}
             />
             <Button
@@ -36,16 +44,15 @@ function Login({ navigation}) {
             containerStyle={styles.buttonContent}
             buttonStyle={styles.buttonStyle}
             titleStyle={styles.titleStyle}
-            title="Login With Google"
+            title="Register With Google"
             />
-            </KeyboardAvoidingView>
-        </View>
+          </KeyboardAvoidingView>
+        </ScrollView>
         <View style={styles.footerText}>
-            <Text style={styles.footerText1}>New User? </Text>
-            <Text onPress={() => navigation.navigate('Register')} style={styles.footerText2}>Register</Text> 
+            <Text style={styles.footerText1}>Already Have Account? </Text>
+            <Text onPress={() => navigation.navigate('Login')} style={styles.footerText2}>Login</Text> 
         </View>
-        
       </View>
     );
   }
-export default Login
+export default Register

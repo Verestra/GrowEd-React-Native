@@ -10,10 +10,10 @@ const styles = StyleSheet.create ({
     },
     inputContent: {
         flex: 1,
-        marginTop: 80
+        marginTop: 40
         
     },
-    login: {
+    register: {
         textAlign: 'center',
         fontFamily: 'Kanit-Medium',
         fontSize: 32,
@@ -36,21 +36,22 @@ const styles = StyleSheet.create ({
     },
     buttonContent: {
         borderRadius: 10,
-        marginTop: 40,
-        
+        marginTop: 20,    
     },
     buttonLogin: {
         height: 60,
     },
     buttonStyle: {
-        height: 60,
+        height: 50,
         backgroundColor: 'rgba(0, 13, 79, 0.08)',
+    },
+    buttonRegister: {
+        height: 50,
     },
     footerText: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
-        position: 'relative'
     },
     footerText1: {
         fontFamily: 'Roboto-Light',
@@ -60,6 +61,7 @@ const styles = StyleSheet.create ({
     footerText2: {
         color: '#5784BA',
         fontSize: 16,
+        position:'relative'
     },
 })  
 

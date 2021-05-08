@@ -5,10 +5,14 @@ import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Login from './screens/Login'
+import Login from './screens/Login';
+import Register from './screens/Register';
+import ResetPassword from './screens/Reset-Password/ResetPassword';
+import ResetPasswordOtp from './screens/Reset-Password/ResetPasswordOtp';
+import ResetPasswordNew from './screens/Reset-Password/ResetPasswordNew';
+import ResetPasswordSuccess from './screens/Reset-Password/ResetPasswordSucces';
 
 
-const Stack = createStackNavigator();
 
  export default class App extends Component 
 {  
@@ -31,8 +35,10 @@ const Stack = createStackNavigator();
     }, 5000);  
    }  
    
+  
     render()  
     {  
+      const {Navigator, Screen} = createStackNavigator();
         let Splash_Screen = (  
              <View style={styles.SplashScreen_RootView}>  
                  <View style={styles.SplashScreen_ChildView}>  
@@ -41,9 +47,14 @@ const Stack = createStackNavigator();
              </View> )  
          return(   
                <NavigationContainer style={styles.NavigationContainer}>
-                  <Stack.Navigator initialRouteName="Login" headerMode={'none'}>
-                    <Stack.Screen  name="Login" component={Login} />
-                  </Stack.Navigator>
+                  <Navigator headerMode={'none'} initialRouteName="Login">
+                    <Screen  name="Login" component={Login} />
+                    <Screen  name="Register" component={Register} />
+                    <Screen  name="ResetPassword" component={ResetPassword} />
+                    <Screen  name="ResetPasswordOtp" component={ResetPasswordOtp} />
+                    <Screen  name="ResetPasswordNew" component={ResetPasswordNew} />
+                    <Screen  name="ResetPasswordSuccess" component={ResetPasswordSuccess} />
+                  </Navigator>
                   {  
                   (this.state.isVisible === true) ? Splash_Screen : null  
                 }
