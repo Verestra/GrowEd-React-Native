@@ -67,7 +67,6 @@ function Profile({ navigation}) {
                     <ListItem.Content>
                     <ListItem.Title style={styles.listTitle}>{item.title}</ListItem.Title>
                     </ListItem.Content>
-                    <ListItem.Chevron />
                     <Icon name={'chevron-right'} size={40}/>
                 </ListItem>
                 ))
@@ -85,7 +84,6 @@ function Profile({ navigation}) {
                     <ListItem.Content>
                     <ListItem.Title style={styles.listTitle}>{item.title}</ListItem.Title>
                     </ListItem.Content>
-                    <ListItem.Chevron />
                     <Icon name={'chevron-right'} size={40}/>
                 </ListItem>
                 ))
@@ -101,7 +99,6 @@ function Profile({ navigation}) {
                     <ListItem.Content>
                     <ListItem.Title style={styles.listTitle}>F.A.Q</ListItem.Title>
                     </ListItem.Content>
-                    <ListItem.Chevron />
                     <Icon name={'chevron-right'} size={40}/>
                 </ListItem>
                 <ListItem bottomDivider style={{marginBottom: 50}}>
@@ -109,7 +106,6 @@ function Profile({ navigation}) {
                     <ListItem.Content>
                     <ListItem.Title style={styles.logoutTitle}>Logout</ListItem.Title>
                     </ListItem.Content>
-                    <ListItem.Chevron />
                 </ListItem>
             </View>
         </ScrollView>

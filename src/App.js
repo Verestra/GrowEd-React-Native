@@ -11,17 +11,29 @@ import ResetPassword from './screens/Reset-Password/ResetPassword';
 import ResetPasswordOtp from './screens/Reset-Password/ResetPasswordOtp';
 import ResetPasswordNew from './screens/Reset-Password/ResetPasswordNew';
 import ResetPasswordSuccess from './screens/Reset-Password/ResetPasswordSucces';
-import Profile from './screens/Profile'
-import FooterTab from './components/Footer'
+import Profile from './screens/Profile';
+import FooterTab from './components/Footer';
+import Dashboard from './screens/Student/Dashboard/Dashboard';
+import ForYou from './screens/Student/Dashboard/Dashboard'
 
  export default class App extends Component 
 {  
    constructor(){  
      super();  
      this.state={  
-     isVisible : true,  
-    }  
+     isVisible : true,
+     jwt: '',
+     loading: true  
+    }
+    this.newJWT = this.newJWT.bind(this);
+  }
+
+  newJWT(jwt){
+    this.setState({
+      jwt: jwt
+    });
   }  
+  
    Hide_Splash_Screen=()=>{  
     this.setState({   
       isVisible : false   
@@ -56,6 +68,8 @@ import FooterTab from './components/Footer'
                     <Screen  name="ResetPasswordSuccess" component={ResetPasswordSuccess} />
                     <Screen  name="Profile" component={Profile} />
                     <Screen  name="FooterTab" component={FooterTab} />
+                    <Screen  name="Dashboard" component={Dashboard} />
+                    <Screen  name="ForYou" component={ForYou} />
                   </Navigator>
                   {  
                   (this.state.isVisible === true) ? Splash_Screen : null  

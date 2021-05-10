@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Image } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Profile from '../screens/Profile';
+import ForYou from '../screens/Student/Dashboard/ForYou'
 import Register from '../screens/Register';
 import ResetPassword from '../screens/Reset-Password/ResetPassword';
 import ResetPasswordNew from '../screens/Reset-Password/ResetPasswordNew'
@@ -17,8 +18,8 @@ function FooterTab() {
       }}
     >
       <Tab.Screen
-        name="Register"
-        component={Register}
+        name="ForYou"
+        component={ForYou}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={30} />
@@ -30,7 +31,7 @@ function FooterTab() {
         component={ResetPasswordNew}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="chat-processing" color={color} size={30} />
+            <Image source={require('../assets/img/activity-icon.png')} color={color} size={30} />
           ),
         }}
     />
