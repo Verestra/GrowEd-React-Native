@@ -3,6 +3,7 @@ import { ScrollView, View, Text, Image } from 'react-native';
 import styles from './Style';
 import { SearchBar } from 'react-native-elements';
 import {FlatListSlider} from 'react-native-flatlist-slider';
+import FooterTab from '../../../components/Footer';
 
 function DashboardHeader({ navigation}) {
     return (
@@ -59,12 +60,12 @@ function Dashboard({ navigation}) {
             <Text style={{fontFamily: 'Roboto-Regular', color: '#4D505B'}}>Today, October 10</Text>
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent:'center', margin: 15}}>
                     <Text style={{fontFamily: 'Roboto-Medium', color: '#ADA9BB', marginRight: 20}}>All Schedule</Text>
-                    <Text style={{fontFamily: 'Roboto-Medium', color: '#5785BA',}}>For You</Text>
+                    <Text  onPress={() => navigation.navigate('FooterTab')} style={{fontFamily: 'Roboto-Medium', color: '#ADA9BB',}}>For You</Text>
                 </View>
-
             </ScrollView>
+        <FooterTab />
         </View>
-     );
+        );
      }
 
 

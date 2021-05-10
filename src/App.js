@@ -14,7 +14,9 @@ import ResetPasswordSuccess from './screens/Reset-Password/ResetPasswordSucces';
 import Profile from './screens/Profile';
 import FooterTab from './components/Footer';
 import Dashboard from './screens/Student/Dashboard/Dashboard';
-import ForYou from './screens/Student/Dashboard/Dashboard'
+import ForYou from './screens/Student/Dashboard/Dashboard';
+import Chat from './screens/Chats/Chat'
+import Activity from './screens/Student/Activity/Activity'
 
  export default class App extends Component 
 {  
@@ -33,7 +35,7 @@ import ForYou from './screens/Student/Dashboard/Dashboard'
       jwt: jwt
     });
   }  
-  
+
    Hide_Splash_Screen=()=>{  
     this.setState({   
       isVisible : false   
@@ -70,6 +72,8 @@ import ForYou from './screens/Student/Dashboard/Dashboard'
                     <Screen  name="FooterTab" component={FooterTab} />
                     <Screen  name="Dashboard" component={Dashboard} />
                     <Screen  name="ForYou" component={ForYou} />
+                    <Screen  name="Chat" component={Chat} />
+                    <Screen  name="Activity" component={Activity} />
                   </Navigator>
                   {  
                   (this.state.isVisible === true) ? Splash_Screen : null  

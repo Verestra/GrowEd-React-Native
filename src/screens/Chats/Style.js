@@ -12,6 +12,15 @@ const styles = StyleSheet.create ({
         color: '#F9F9F9',
         fontSize: 33
     },
-    })
+    senderName: {
+        fontFamily: 'Kanit-Regular',
+        fontSize: 20
+    },
+    senderMessage: {
+        fontFamily: 'Kanit-Regular',
+        fontSize: 14,
+        color: '#787878'
+    },
+    });
 
 export default styles

@@ -4,9 +4,12 @@ import { Image } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Profile from '../screens/Profile';
 import ForYou from '../screens/Student/Dashboard/ForYou'
+import Dashboard from '../screens/Student/Dashboard/Dashboard'
 import Register from '../screens/Register';
 import ResetPassword from '../screens/Reset-Password/ResetPassword';
 import ResetPasswordNew from '../screens/Reset-Password/ResetPasswordNew'
+import Chat from '../screens/Chats/Chat'
+import Activity from '../screens/Student/Activity/Activity'
 const Tab = createBottomTabNavigator();
 
 function FooterTab() {
@@ -19,7 +22,7 @@ function FooterTab() {
     >
       <Tab.Screen
         name="ForYou"
-        component={ForYou}
+        component={ForYou} 
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={30} />
@@ -27,8 +30,8 @@ function FooterTab() {
         }}
       />
       <Tab.Screen
-        name="ResetPasswordNew"
-        component={ResetPasswordNew}
+        name="Activity"
+        component={Activity}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image source={require('../assets/img/activity-icon.png')} color={color} size={30} />
@@ -36,8 +39,8 @@ function FooterTab() {
         }}
     />
       <Tab.Screen
-        name="ResetPassword"
-        component={ResetPassword}
+        name="Chat"
+        component={Chat}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="chat-processing" color={color} size={30} />

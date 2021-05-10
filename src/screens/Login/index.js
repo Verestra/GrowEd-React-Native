@@ -100,7 +100,7 @@ class Login extends Component{
             buttonStyle={styles.buttonStyle}
             titleStyle={styles.titleStyle}
             title="Login With Google"
-            onPress={() => this.props.navigation.push('Profile')}
+            onPress={() => this.props.navigation.push('FooterTab')}
             />
             </KeyboardAvoidingView>
         </View> : this.props.navigation.push('Profile') }

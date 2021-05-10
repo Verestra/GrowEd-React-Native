@@ -36,8 +36,8 @@ const styles = StyleSheet.create ({
         display: 'flex',
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
+        justifyContent: 'center',
         padding: 20,
-        maxWidth: '50%'
     },
     textItem: {
         fontFamily: 'Montserrat-SemiBold',
@@ -46,6 +46,7 @@ const styles = StyleSheet.create ({
         lineHeight: 30,
         letterSpacing: 0.5,
         color: '#010620',
+        maxWidth: '40%'
     }
     })
 

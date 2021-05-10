@@ -4,6 +4,7 @@ import styles from './Style';
 import { SearchBar } from 'react-native-elements';
 import {FlatListSlider} from 'react-native-flatlist-slider';
 import ProgressCircle from 'react-native-progress-circle'
+import { ListItem, Avatar } from 'react-native-elements'
 
 function DashboardHeader({ navigation}) {
     return (
@@ -35,6 +36,25 @@ function ForYou({ navigation}) {
            'Red fort in India New Delhi is a magnificient masterpeiece of humans',
        },
        ]
+
+       const list = [
+        {
+          time: '08.00 - 09.40',
+          className: 'Introduction to Banking Finance',
+          progress: '80%'
+        },
+        {
+          time: '11.00 - 11.40',
+          className: 'History of Europe',
+          progress: '25%'
+        },
+        {
+          time: '13.00 - 14.30',
+          className: 'HTML For Beginner',
+          progress: '62'
+        },
+     
+        ]
     return (
         <ScrollView style={{backgroundColor: '#E6EDF6'}}>
             <DashboardHeader />
@@ -58,14 +78,16 @@ function ForYou({ navigation}) {
                 </View>
             <Text style={{fontFamily: 'Roboto-Regular', color: '#4D505B'}}>Today, October 10</Text>
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent:'center', margin: 15}}>
-                    <Text style={{fontFamily: 'Roboto-Medium', color: '#ADA9BB', marginRight: 20}}>All Schedule</Text>
+                    <Text  onPress={() => navigation.navigate('Dashboard')} style={{fontFamily: 'Roboto-Medium', color: '#ADA9BB', marginRight: 20}}>All Schedule</Text>
                     <Text style={{fontFamily: 'Roboto-Medium', color: '#5785BA',}}>For You</Text>
                 </View>
             <View>
-                <View style={styles.itemContainer}>
-                    <View style={styles.itemContent}>
-                        <Text style={styles.textItem}>08.00 - 09.40</Text>
-                        <Text style={styles.textItem}>Introduction to Banking Finance</Text>
+            {
+                    list.map((l, i) => ( 
+                        <ListItem key={i} bottomDivider>
+                        <ListItem.Content style={styles.itemContent}>
+                        <Text style={styles.textItem}>{l.time}</Text>
+                        <Text style={styles.textItem}>{l.className}</Text>
                         <ProgressCircle
                             percent={30}
                             radius={25}
@@ -74,38 +96,11 @@ function ForYou({ navigation}) {
                             shadowColor="#fff"
                             bgColor="#fff"
                         >
-                            <Text style={{ fontSize: 18, color: '#5784BA'}}>{'30%'}</Text>
+                            <Text style={{ fontSize: 18, color: '#5784BA'}}>{l.progress}</Text>
                         </ProgressCircle>
-                    </View>
-                    <View style={styles.itemContent}>
-                        <Text style={styles.textItem}>08.00 - 09.40</Text>
-                        <Text style={styles.textItem}>Introduction to Banking Finance</Text>
-                        <ProgressCircle
-                            percent={30}
-                            radius={25}
-                            borderWidth={4}
-                            color="#3399FF"
-                            shadowColor="#fff"
-                            bgColor="#fff"
-                        >
-                            <Text style={{ fontSize: 18,  color: '#5784BA' }}>{'30%'}</Text>
-                        </ProgressCircle>
-                    </View>
-                    <View style={styles.itemContent}>
-                        <Text style={styles.textItem}>08.00 - 09.40</Text>
-                        <Text style={styles.textItem}>Introduction to Banking Finance</Text>
-                        <ProgressCircle
-                            percent={30}
-                            radius={25}
-                            borderWidth={4}
-                            color="#3399FF"
-                            shadowColor="#fff"
-                            bgColor="#fff"
-                        >
-                            <Text style={{ fontSize: 18,  color: '#5784BA' }}>{'30%'}</Text>
-                        </ProgressCircle>
-                    </View>
-                </View>
+                        </ListItem.Content>
+                    </ListItem>
+                    )) }
             </View>
             </View>
         </ScrollView>
