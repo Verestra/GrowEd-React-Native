@@ -20,17 +20,17 @@ function Activity({ navigation}) {
     const list = [
         {
           className: 'Front End Fundamentals',
-          progress: '30%',
+          progress: 30,
           score: '86'
         },
         {
           className: 'HTML for Beginners',
-          progress: '25%',
+          progress: 25,
           score: '71'
         },
         {
           className: 'History of Europe',
-          progress: '69%',
+          progress: 69,
           score: '62'
         },
      
@@ -38,20 +38,25 @@ function Activity({ navigation}) {
 
         const newClass = [
             {
-              className: 'Front End Fundamentals',
+              className: 'Know more Javascript',
               level: 'Beginner',
               pricing: 'Free'
             },
             {
-              className: 'HTML for Beginners',
+              className: 'HTML and CSS to code',
               level: 'Intermediate',
               pricing: '$10'
             },
             {
-              className: 'History of Europe',
+              className: 'Indonesian war history',
               level: 'Advance',
               pricing: '$50'
             },
+            {
+                className: 'Buddhism and Modern Psychology',
+                level: 'Beginner',
+                pricing: 'Free'
+              },
          
             ]
 
@@ -72,14 +77,14 @@ function Activity({ navigation}) {
                         <ListItem.Content style={{padding: 10, display:'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                         <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 16, maxWidth: '33%'}}>{l.className}</Text>
                         <ProgressCircle
-                            percent={30}
-                            radius={30}
+                            percent={l.progress}
+                            radius={27}
                             borderWidth={4}
                             color="#3399FF"
                             shadowColor="#fff"
                             bgColor="#fff"
                             >
-                            <Text style={{ fontSize: 18,  color: '#5784BA' }}>{l.progress}</Text>
+                            <Text style={{ fontSize: 18,  color: '#5784BA' }}>{l.progress}%</Text>
                         </ProgressCircle>
                         <Text style={{fontFamily: 'Montserrat-SemiBold', fontSize: 30, alignSelf:'center', color: '#51E72B'}}>{l.score}</Text>
                         </ListItem.Content>
@@ -88,7 +93,7 @@ function Activity({ navigation}) {
                     ))
                 }
                 </View>
-                <Text style={{alignSelf: 'center', fontFamily: 'Montserrat-SemiBold', fontSize: 12, margin: 10}}>View All <Icon name="chevron-right" size={18}/></Text>
+                <Text onPress={() => navigation.navigate('MyClass')} style={{alignSelf: 'center', fontFamily: 'Montserrat-SemiBold', fontSize: 12, margin: 10}}>View All <Icon name="chevron-right" size={18}/></Text>
                 <View style={{backgroundColor: '#F9F9F9', padding: 20, borderRadius: 20}}>
                     <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 18}}>New Class</Text>
                     <View style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
@@ -119,7 +124,7 @@ function Activity({ navigation}) {
                     newClass.map((l, i) => (
                     <ListItem containerStyle={{borderRadius: 20, marginTop: 5}} key={i} bottomDivider>
                         <ListItem.Content style={{padding: 10, display:'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 16, maxWidth: '33%'}}>{l.className}</Text>
+                        <Text onPress={()=> navigation.navigate('ClassDetail')} style={{fontFamily: 'Montserrat-Medium', fontSize: 16, maxWidth: '33%'}}>{l.className}</Text>
                         <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 16, maxWidth: '33%'}}>{l.level}</Text>
                         <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 16}}>{l.pricing}</Text>
                         </ListItem.Content>

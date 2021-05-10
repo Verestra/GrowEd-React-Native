@@ -37,7 +37,7 @@ class Login extends Component{
         const onSuccess = ({data}) => {
           console.log(data.success)
           if (data.success) {
-            this.props.navigation.navigate('FooterTab')
+            this.props.navigation.replace('FooterTab')
           }
         };
     
@@ -100,7 +100,7 @@ class Login extends Component{
             buttonStyle={styles.buttonStyle}
             titleStyle={styles.titleStyle}
             title="Login With Google"
-            onPress={() => this.props.navigation.push('FooterTab')}
+            onPress={() => this.props.navigation.replace('FooterTab')}
             />
             </KeyboardAvoidingView>
         </View> : this.props.navigation.push('Profile') }

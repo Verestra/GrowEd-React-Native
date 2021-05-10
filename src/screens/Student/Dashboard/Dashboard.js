@@ -5,6 +5,7 @@ import { SearchBar } from 'react-native-elements';
 import {FlatListSlider} from 'react-native-flatlist-slider';
 import FooterTab from '../../../components/Footer';
 
+
 function DashboardHeader({ navigation}) {
     return (
         <View style={styles.headerContainer}>

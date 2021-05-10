@@ -6,6 +6,7 @@ import {FlatListSlider} from 'react-native-flatlist-slider';
 import ProgressCircle from 'react-native-progress-circle'
 import { ListItem, Avatar } from 'react-native-elements'
 
+
 function DashboardHeader({ navigation}) {
     return (
         <View style={styles.headerContainer}>

@@ -12,6 +12,11 @@ const styles = StyleSheet.create ({
         color: '#F9F9F9',
         fontSize: 33
     },
+    headerCreate: {
+        fontFamily: 'Kanit-Medium',
+        color: '#F9F9F9',
+        fontSize: 23
+    },
     senderName: {
         fontFamily: 'Kanit-Regular',
         fontSize: 20

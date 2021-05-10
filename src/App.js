@@ -15,8 +15,13 @@ import Profile from './screens/Profile';
 import FooterTab from './components/Footer';
 import Dashboard from './screens/Student/Dashboard/Dashboard';
 import ForYou from './screens/Student/Dashboard/Dashboard';
-import Chat from './screens/Chats/Chat'
-import Activity from './screens/Student/Activity/Activity'
+import Chat from './screens/Chats/Chat';
+import ChooseFriends from './screens/Chats/ChooseFriends'
+import Activity from './screens/Student/Activity/Activity';
+import MyClass from './screens/Student/Activity/MyClass';
+import ClassDetail from './screens/Student/Activity/ClassDetail';
+import ClassProgress from './screens/Student/Activity/ClassProgress';
+
 
  export default class App extends Component 
 {  
@@ -73,7 +78,11 @@ import Activity from './screens/Student/Activity/Activity'
                     <Screen  name="Dashboard" component={Dashboard} />
                     <Screen  name="ForYou" component={ForYou} />
                     <Screen  name="Chat" component={Chat} />
+                    <Screen  name="ChooseFriends" component={ChooseFriends} />
                     <Screen  name="Activity" component={Activity} />
+                    <Screen  name="MyClass" component={MyClass} />
+                    <Screen  name="ClassDetail" component={ClassDetail} />
+                    <Screen  name="ClassProgress" component={ClassProgress} />
                   </Navigator>
                   {  
                   (this.state.isVisible === true) ? Splash_Screen : null  
