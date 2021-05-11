@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
 import { Input, Button } from 'react-native-elements';
-import { KeyboardAvoidingView, keyboardVerticalOffset, View, Text, Image } from 'react-native';
+import { KeyboardAvoidingView, keyboardVerticalOffset, ScrollView,View, Text, Image } from 'react-native';
 import styles from './style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios'
@@ -57,7 +57,7 @@ class Login extends Component{
     render() {
     const {isLoading} = this.state;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Spinner visible={isLoading} />
         <Text style={styles.login}>Login</Text>
         {!this.state.isAuthorized ? 
@@ -108,7 +108,7 @@ class Login extends Component{
             <Text style={styles.footerText1}>New User? </Text>
             <Text onPress={() => this.props.navigation.navigate('Register')} style={styles.footerText2}>Register</Text> 
         </View>
-      </View>
+      </ScrollView>
     );
     }
   }

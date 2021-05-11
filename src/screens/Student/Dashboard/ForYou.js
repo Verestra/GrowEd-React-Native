@@ -42,17 +42,17 @@ function ForYou({ navigation}) {
         {
           time: '08.00 - 09.40',
           className: 'Introduction to Banking Finance',
-          progress: '80%'
+          progress: 80
         },
         {
           time: '11.00 - 11.40',
           className: 'History of Europe',
-          progress: '25%'
+          progress: 25
         },
         {
           time: '13.00 - 14.30',
           className: 'HTML For Beginner',
-          progress: '62'
+          progress: 62
         },
      
         ]
@@ -90,14 +90,14 @@ function ForYou({ navigation}) {
                         <Text style={styles.textItem}>{l.time}</Text>
                         <Text style={styles.textItem}>{l.className}</Text>
                         <ProgressCircle
-                            percent={30}
+                            percent={l.progress}
                             radius={25}
                             borderWidth={4}
                             color="#3399FF"
                             shadowColor="#fff"
                             bgColor="#fff"
                         >
-                            <Text style={{ fontSize: 18, color: '#5784BA'}}>{l.progress}</Text>
+                            <Text style={{ fontSize: 18, color: '#5784BA'}}>{l.progress}%</Text>
                         </ProgressCircle>
                         </ListItem.Content>
                     </ListItem>

@@ -104,7 +104,7 @@ function Profile({ navigation}) {
                 <ListItem bottomDivider style={{marginBottom: 50}}>
                     <Image source={require('../../assets/img/logout-icon.png')}/>
                     <ListItem.Content>
-                    <ListItem.Title style={styles.logoutTitle}>Logout</ListItem.Title>
+                    <ListItem.Title onPress={() => navigation.replace('Login')} style={styles.logoutTitle}>Logout</ListItem.Title>
                     </ListItem.Content>
                 </ListItem>
             </View>

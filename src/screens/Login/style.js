@@ -50,7 +50,8 @@ const styles = StyleSheet.create ({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
-        position: 'relative'
+        position: 'relative',
+        marginTop: 100
     },
     footerText1: {
         fontFamily: 'Roboto-Light',
