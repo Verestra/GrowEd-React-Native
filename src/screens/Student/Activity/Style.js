@@ -10,12 +10,12 @@ const styles = StyleSheet.create ({
     headerName: {
         fontFamily: 'Kanit-Medium',
         color: '#F9F9F9',
-        fontSize: 33
+        fontSize: 33,
     },
     headerText: {
         fontFamily: 'Kanit-Medium',
         color: '#F9F9F9',
-        fontSize: 26
+        fontSize: 22
     },
     h2Text: {
         fontFamily: 'Montserrat-Medium',
@@ -26,7 +26,8 @@ const styles = StyleSheet.create ({
     h3Text: {
         fontFamily: 'Montserrat-Medium',
         color: '#000000',
-        fontSize: 15
+        fontSize: 15,
+        marginRight: 5
     },
     containerDetail: {
         marginTop: '22%',
@@ -36,6 +37,7 @@ const styles = StyleSheet.create ({
         fontFamily: 'Montserrat-Medium',
         color: '#5784BA',
         fontSize: 15,
+        marginRight: 5,
         borderBottomWidth: 1,
         borderBottomColor: '#5784BA'
     },
@@ -51,6 +53,22 @@ const styles = StyleSheet.create ({
         color: '#000000',
         fontSize: 15
     },
+    fab: {
+        position: 'absolute', 
+        width: 56, 
+        height: 56, 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        right: 20, 
+        bottom: 20, 
+        backgroundColor: 'blue', 
+        borderRadius: 30, 
+        elevation: 8 
+    },
+    fabIcon: { 
+        fontSize: 40, 
+        color: 'white' 
+      }
     })
 
 export default styles

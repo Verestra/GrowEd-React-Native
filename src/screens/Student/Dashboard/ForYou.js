@@ -1,10 +1,13 @@
 import * as React from 'react';
+import {useState, useEffect, useCallback, useRef} from 'react';
 import { ScrollView, View, Text, Image } from 'react-native';
 import styles from './Style';
 import { SearchBar } from 'react-native-elements';
 import {FlatListSlider} from 'react-native-flatlist-slider';
 import ProgressCircle from 'react-native-progress-circle'
 import { ListItem, Avatar } from 'react-native-elements'
+import {connect} from 'react-redux';
+import axios from 'axios'
 
 
 function DashboardHeader({ navigation}) {
@@ -25,7 +28,44 @@ function DashboardHeader({ navigation}) {
         </View>
     )
  }
-function ForYou({ navigation}) {
+function ForYou(props, { navigation}) {
+    let [responseData, setResponseData] = useState([]);
+    const token = props.authReducers.user.token;
+    const getRef = useRef();
+    // const fetchData = useCallback(() => {
+    //     axios.get(
+    //         "http://192.168.1.127:8000/courses/api/studentscore/",
+    //         {
+    //           headers: {'x-access-token': `Bearer ${token}`},
+    //         },
+    //       )
+    //     .then((response) => {
+    //       setResponseData(response.data.data)
+    //     })
+    //     .catch((error) => {
+    //       console.log(error)
+    //     })
+    //   }, [])
+    //   useEffect(() => {
+    //     if (!getRef.current) {
+    //         fetchData;
+    //         getRef.current = true;
+    //     }
+    // })
+      
+    useEffect(() => {
+        const token = props.authReducers.user.token;
+        axios
+          .get(
+            "http://192.168.1.127:8000/courses/api/studentscore/",
+            {
+              headers: {'x-access-token': `Bearer ${token}`},
+            },
+          )
+          .then(res => setResponseData(res.data.data))
+          .catch(err => console.log(err));
+      }, []);
+      console.log(responseData)
     const images = [
         {
          image:'https://i.ibb.co/2cVY8Qy/microsoft-banner.png',
@@ -37,27 +77,8 @@ function ForYou({ navigation}) {
            'Red fort in India New Delhi is a magnificient masterpeiece of humans',
        },
        ]
-
-       const list = [
-        {
-          time: '08.00 - 09.40',
-          className: 'Introduction to Banking Finance',
-          progress: 80
-        },
-        {
-          time: '11.00 - 11.40',
-          className: 'History of Europe',
-          progress: 25
-        },
-        {
-          time: '13.00 - 14.30',
-          className: 'HTML For Beginner',
-          progress: 62
-        },
-     
-        ]
-    return (
-        <ScrollView style={{backgroundColor: '#E6EDF6'}}>
+        return (
+            <ScrollView style={{backgroundColor: '#E6EDF6'}}>
             <DashboardHeader />
             <View style={{padding: 10}}>
             <FlatListSlider
@@ -83,21 +104,30 @@ function ForYou({ navigation}) {
                     <Text style={{fontFamily: 'Roboto-Medium', color: '#5785BA',}}>For You</Text>
                 </View>
             <View>
+            {responseData?.length === 0 && (
+                <>
+                <ListItem>
+                    <ListItem.Content style={styles.itemContent}>
+                        <Text style={styles.textItem1}>No Schedule For You</Text>
+                    </ListItem.Content>
+                </ListItem>
+               </>
+            )}
             {
-                    list.map((l, i) => ( 
+                     responseData.map((l, i) => ( 
                         <ListItem key={i} bottomDivider>
                         <ListItem.Content style={styles.itemContent}>
-                        <Text style={styles.textItem}>{l.time}</Text>
-                        <Text style={styles.textItem}>{l.className}</Text>
+                        <Text style={styles.textItem}>{l.start_time.substr(0, 5)} - {l.finish_time.substr(0, 5)}</Text>
+                        <Text style={styles.textItem1}>{l.class_name}</Text>
                         <ProgressCircle
-                            percent={l.progress}
-                            radius={25}
+                            percent={Number(l.progress)}
+                            radius={27}
                             borderWidth={4}
                             color="#3399FF"
                             shadowColor="#fff"
                             bgColor="#fff"
                         >
-                            <Text style={{ fontSize: 18, color: '#5784BA'}}>{l.progress}%</Text>
+                            <Text style={{ fontSize: 18, color: '#5784BA'}}>{Number(l.progress)}%</Text>
                         </ProgressCircle>
                         </ListItem.Content>
                     </ListItem>
@@ -105,7 +135,14 @@ function ForYou({ navigation}) {
             </View>
             </View>
         </ScrollView>
-     );
-     }
+          )};
+    
 
-export default ForYou
+     const mapStateToProps = state => {
+        return {
+          authReducers: state.authReducers,
+        };
+      };
+      const ConnectedDashboard = connect(mapStateToProps)(ForYou);
+  
+      export default ConnectedDashboard;

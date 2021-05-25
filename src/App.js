@@ -1,9 +1,12 @@
 import { Component } from 'react';  
 import * as React from 'react'
+
  import { Platform, StyleSheet, View,  
  Image,} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+import {connect} from 'react-redux';
 
 import Login from './screens/Login';
 import Register from './screens/Register';
@@ -23,7 +26,7 @@ import ClassDetail from './screens/Student/Activity/ClassDetail';
 import ClassProgress from './screens/Student/Activity/ClassProgress';
 
 
- export default class App extends Component 
+  class App extends Component 
 {  
    constructor(){  
      super();  
@@ -56,6 +59,7 @@ import ClassProgress from './screens/Student/Activity/ClassProgress';
    
   
     render()  
+    
     {  
       const {Navigator, Screen} = createStackNavigator();
         let Splash_Screen = (  
@@ -66,23 +70,18 @@ import ClassProgress from './screens/Student/Activity/ClassProgress';
              </View> )  
          return(   
                <NavigationContainer style={styles.NavigationContainer}>
-                  <Navigator headerMode={'none'} initialRouteName="Login">
+                  <Navigator headerMode={'none'}>
+                  {!this.props.authReducers.isLogin ? (
+                    <>
                     <Screen  name="Login" component={Login} />
                     <Screen  name="Register" component={Register} />
                     <Screen  name="ResetPassword" component={ResetPassword} />
                     <Screen  name="ResetPasswordOtp" component={ResetPasswordOtp} />
                     <Screen  name="ResetPasswordNew" component={ResetPasswordNew} />
                     <Screen  name="ResetPasswordSuccess" component={ResetPasswordSuccess} />
-                    <Screen  name="Profile" component={Profile} />
-                    <Screen  name="FooterTab" component={FooterTab} />
-                    <Screen  name="Dashboard" component={Dashboard} />
-                    <Screen  name="ForYou" component={ForYou} />
-                    <Screen  name="Chat" component={Chat} />
-                    <Screen  name="ChooseFriends" component={ChooseFriends} />
-                    <Screen  name="Activity" component={Activity} />
-                    <Screen  name="MyClass" component={MyClass} />
-                    <Screen  name="ClassDetail" component={ClassDetail} />
-                    <Screen  name="ClassProgress" component={ClassProgress} />
+                    </> ) : (
+                    <Screen  name="FooterTab" component={FooterTab} />                  
+                    )}
                   </Navigator>
                   {  
                   (this.state.isVisible === true) ? Splash_Screen : null  
@@ -112,4 +111,20 @@ import ClassProgress from './screens/Student/Activity/ClassProgress';
         backgroundColor: '#CBDAF3',  
         flex:1,  
     },  
-});  
+});
+
+const mapStateToProps = state => {
+  return {
+    authReducers: state.authReducers,
+  };
+};
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onSnackbarHide: () => dispatch(snackbarHide()),
+//   };
+// };
+
+const ConnectedApp = connect(mapStateToProps)(App);
+
+export default ConnectedApp;

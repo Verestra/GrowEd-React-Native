@@ -36,17 +36,25 @@ const styles = StyleSheet.create ({
         display: 'flex',
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
-        justifyContent: 'space-between',
-        padding: 20,
+        padding: 10,
     },
     textItem: {
         fontFamily: 'Montserrat-SemiBold',
-        fontSize: 15,
-        marginRight: 20,
+        fontSize: 14,
+        flex: 1,
+        marginRight: 10,
         lineHeight: 30,
         letterSpacing: 0.5,
         color: '#010620',
-        maxWidth: '40%'
+    },
+    textItem1: {
+        fontFamily: 'Montserrat-SemiBold',
+        fontSize: 15,
+        flex: 2,
+        marginRight: 15,
+        lineHeight: 30,
+        letterSpacing: 0.5,
+        color: '#010620',
     }
     })
 

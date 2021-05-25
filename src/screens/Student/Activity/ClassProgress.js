@@ -84,12 +84,12 @@ function ClassProgress({ navigation}) {
                 {
                     list.map((l, i) => (
                     <ListItem containerStyle={{borderRadius: 20, marginTop: 20}} key={i} bottomDivider>
-                        <ListItem.Content style={{padding: 10, display:'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <ListItem.Content style={{padding: 5, display:'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                         <CheckBox 
                         checked={checked}
                         onPress={() => setChecked(!checked)}
                         />
-                        <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 16, maxWidth: '33%'}}>{l.className}</Text>
+                        <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 16, flex:1}}>{l.className}</Text>
                         <Text style={{fontFamily: 'Montserrat-SemiBold', fontSize: 30, alignSelf:'center', color: '#51E72B'}}>{l.score}</Text>
                         </ListItem.Content>
                     </ListItem>

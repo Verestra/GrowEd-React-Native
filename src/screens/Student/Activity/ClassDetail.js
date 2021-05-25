@@ -25,7 +25,7 @@ function ClassDetail({ navigation}) {
             <View>
                 <ImageBackground  style={{width:"100%", height: 221}} source={require('../../../assets/img/bg-class-transparent.png')}>
                 <View style={{display: 'flex', flexDirection:'row'}}>
-                    <Image style={{marginLeft: 20, marginTop: '42%'}} source={require('../../../assets/img/software-icon.png')} />
+                    <Image style={{marginLeft: 5, marginTop: '42%'}} source={require('../../../assets/img/software-icon.png')} />
                     <View style={{display: 'flex', flexDirection: 'column', marginTop: '42%', marginLeft: 20}}>
                         <Text style={styles.h2Text}>Know More Javascript</Text>
                         <Text style={styles.h3Text}>Level : Beginner</Text>

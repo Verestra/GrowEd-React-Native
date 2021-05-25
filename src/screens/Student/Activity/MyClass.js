@@ -76,17 +76,18 @@ function MyClass({ navigation}) {
             <ActivityHeader/>
             <View style={{padding: 20}}>
         
-                <View style={{display: 'flex', flexDirection: 'row', marginTop : 15, justifyContent: 'space-evenly', marginBottom: 20}}>
+                <View style={{display: 'flex', flexDirection: 'row', marginTop : 15, justifyContent: 'space-between', marginBottom: 20, margin: 10, marginRight: 30}}>
                     <Text style={{fontFamily: 'Montserrat-SemiBold', fontSize: 16}}>Class Name</Text>
-                    <Text style={{fontFamily: 'Montserrat-SemiBold', fontSize: 16}}>Progress</Text>
                     <Text style={{fontFamily: 'Montserrat-SemiBold', fontSize: 16}}>Score</Text>
+                    <Text style={{fontFamily: 'Montserrat-SemiBold', fontSize: 16}}>Progress</Text>
                 </View>
                 <View>
                 {
                     list.map((l, i) => (
                     <ListItem containerStyle={{borderRadius: 20, marginTop: 5}} key={i} bottomDivider>
                         <ListItem.Content style={{padding: 10, display:'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 16, maxWidth: '33%'}}>{l.className}</Text>
+                        <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 16, flex: 1}}>{l.className}</Text>
+                        <Text style={{fontFamily: 'Montserrat-SemiBold', fontSize: 30, alignSelf:'center', color: '#51E72B', flex: 1, marginLeft: '10%'}}>{l.score}</Text>
                         <ProgressCircle
                             percent={l.progress}
                             radius={27}
@@ -97,7 +98,6 @@ function MyClass({ navigation}) {
                             >
                             <Text style={{ fontSize: 18,  color: '#5784BA' }}>{l.progress}%</Text>
                         </ProgressCircle>
-                        <Text style={{fontFamily: 'Montserrat-SemiBold', fontSize: 30, alignSelf:'center', color: '#51E72B'}}>{l.score}</Text>
                         </ListItem.Content>
                         <Image style={{height: 30, width: 7, alignSelf: 'center'}} source={require('../../../assets/img/list.png')}/>
                     </ListItem>

@@ -3,10 +3,13 @@ import {Component} from 'react';
 import { Input, Button } from 'react-native-elements';
 import { KeyboardAvoidingView, keyboardVerticalOffset, ScrollView,View, Text, Image } from 'react-native';
 import styles from './style';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios'
 import Spinner from 'react-native-loading-spinner-overlay';
-import deviceStorage from '../../services/deviceStorage'
+
+
+import {connect} from 'react-redux';
+import {loginHandler} from '../../redux/actions/auth';
+import { API_KEY } from '@env';
 
 
 const initialState = {
@@ -15,6 +18,8 @@ const initialState = {
     errors: {},
     isAuthorized: false,
     isLoading: false,
+    showPassword: false,
+    setShowPassword: false
   };
 
 class Login extends Component{
@@ -31,27 +36,9 @@ class Login extends Component{
 
       onPressLogin() {
         const {userNameOrEmail, password} = this.state;
-        const payload = {userNameOrEmail, password};
-        console.log(payload);
-    
-        const onSuccess = ({data}) => {
-          console.log(data.success)
-          if (data.success) {
-            this.props.navigation.replace('FooterTab')
-          }
-        };
-    
-        const onFailure = error => {
-          console.log(error && error.response);
-          this.setState({errors: error.response.data, isLoading: false});
-        };
-    
-        // Show spinner when call is made
-        this.setState({isLoading: true});
-    
-        Axios.post("http://54.160.80.46:8000/users/api/auth/login", payload)
-          .then(onSuccess)
-          .catch(onFailure);
+        const data = {userNameOrEmail, password};
+        console.log(data);
+        this.props.onLoginHandler(data);
       }
 
     render() {
@@ -112,4 +99,21 @@ class Login extends Component{
     );
     }
   }
-export default Login
+
+  const mapStateToProps = state => {
+    return {
+      authReducers: state.authReducers,
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      onLoginHandler: (data) =>
+        dispatch(loginHandler(data)),
+    };
+  };
+  
+  const ConnectedLogin = connect(mapStateToProps, mapDispatchToProps)(Login);
+  
+  export default ConnectedLogin;
+  
