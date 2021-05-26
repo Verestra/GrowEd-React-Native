@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {connect} from 'react-redux';
 import axios from 'axios';
 import { FAB } from 'react-native-elements';
+import Notifservice from '../../../../NotifService'
 
 LogBox.ignoreLogs([
 	'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -30,6 +31,7 @@ function Activity(props, { navigation}) {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [pageCurrent, setPageCurrent] = useState(1);
+    const notification = new Notifservice();
 
     useEffect(() => {
         const token = props.authReducers.user.token;
@@ -43,14 +45,20 @@ function Activity(props, { navigation}) {
           .then(res => setMyClass(res.data.data))
           .catch(err => console.log(err));
       }, []);
-      const registerHandler = (id_courses) => {
+      const registerHandler = (courses) => {
         const id_user = props.authReducers.user.id_user;
         axios
           .post(
             "http://192.168.1.127:8000/courses/api/registerClass",
-            {studentId : id_user, courseId: id_courses},
+            {studentId : id_user, courseId: courses.id_courses},
           )
           .then(res => {
+            if (res.status === 200) {
+                notification.localNotif(
+                  'Register Class Succesfully',
+                  `Registered to Class ${courses.class_name} \nYour class is started on \n${courses.start_time} until ${courses.finish_time}`,
+                );
+              }
           })
           .catch(err => console.log(err));
       };
@@ -87,7 +95,7 @@ function Activity(props, { navigation}) {
                         key={item.id_courses}
                         title="Register"
                         buttonStyle={{ backgroundColor: '#57BA61', borderRadius: 15, marginTop: 20}}
-                        onPress={ () => { registerHandler(item.id_courses) }}
+                        onPress={ () => { registerHandler(item) }}
                         />
             </ListItem>
         )

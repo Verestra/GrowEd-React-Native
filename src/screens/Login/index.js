@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
 import { Input, Button } from 'react-native-elements';
-import { KeyboardAvoidingView, keyboardVerticalOffset, ScrollView,View, Text, Image } from 'react-native';
+import { ToastAndroid ,KeyboardAvoidingView, keyboardVerticalOffset, ScrollView,View, Text, Image } from 'react-native';
 import styles from './style';
 import Axios from 'axios'
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -19,12 +19,12 @@ const initialState = {
     isAuthorized: false,
     isLoading: false,
     showPassword: false,
-    setShowPassword: false
+    setShowPassword: false,
   };
 
 class Login extends Component{
     state = initialState
-    componentWillUnmount() {}
+    
 
     onUsernameChange = userNameOrEmail => {
         this.setState({userNameOrEmail});
@@ -36,11 +36,47 @@ class Login extends Component{
 
       onPressLogin() {
         const {userNameOrEmail, password} = this.state;
+        if (!userNameOrEmail || !password) {
+          return ToastAndroid.showWithGravityAndOffset(
+            "Field Can't be Empty",
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            350
+          );
+        }
+        if (userNameOrEmail.length < 3) {
+          return ToastAndroid.showWithGravityAndOffset(
+            "Username Or Email Minimum length 3",
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            350
+          );
+        }
+        if (password.length <= 5) {
+          return ToastAndroid.showWithGravityAndOffset(
+            "Password Minimum length 6",
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            350
+          );
+        }
         const data = {userNameOrEmail, password};
         console.log(data);
+        this.setState({isLoading : true})
         this.props.onLoginHandler(data);
+        setTimeout(() => {
+          this.setState({isLoading : false})
+        }, 2000)
       }
-
+      componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
     render() {
     const {isLoading} = this.state;
     return (
@@ -52,9 +88,7 @@ class Login extends Component{
         <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={keyboardVerticalOffset}>
             <Input inputContainerStyle={styles.inputContainerStyle}
             value={this.state.userNameOrEmail}
-            onSubmitEditing={event =>
-                this.passwordInput.wrappedInstance.focus()
-              }
+            
             onChangeText={this.onUsernameChange}
             label={"Username or Email"}
             labelStyle={styles.labelStyle}/>

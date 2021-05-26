@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react'
 import { Input, Button } from 'react-native-elements';
-import { KeyboardAvoidingView, keyboardVerticalOffset, ScrollView,View, Text, Image } from 'react-native';
+import { ToastAndroid,KeyboardAvoidingView, keyboardVerticalOffset, ScrollView,View, Text, Image } from 'react-native';
 import styles from './style';
 import Axios from 'axios'
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -42,11 +42,64 @@ class Register extends Component {
         const {username, email, password, passwordMatch} = this.state;
         const payload = {username,email, password, passwordMatch};
         console.log(payload);
-    
+
+        if (!username || !email || !password || !passwordMatch) {
+          return ToastAndroid.showWithGravityAndOffset(
+            "Field Can't be Empty",
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            350
+          );
+        }
+        if (username.length < 3) {
+          return ToastAndroid.showWithGravityAndOffset(
+            "Username Minimum length 3",
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            350
+          );
+        }
+        if (email.length < 3) {
+          return ToastAndroid.showWithGravityAndOffset(
+            "Email minimum Length 3",
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            350
+          );
+        }
+        if (password.length <= 5) {
+          return ToastAndroid.showWithGravityAndOffset(
+            "Password Minimum length 6",
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            350
+          );
+        }
+        if (password !== passwordMatch) {
+          return ToastAndroid.showWithGravityAndOffset(
+            "Password Must be match",
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            350
+          );
+        }
+        
         const onSuccess = ({data}) => {
           console.log(data.success)
           if (data.success) {
             this.props.navigation.navigate('Login')
+            return ToastAndroid.showWithGravityAndOffset(
+              "Account Registered",
+              ToastAndroid.LONG,
+              ToastAndroid.TOP,
+              25,
+              350
+            );
           }
         };
     
@@ -58,7 +111,7 @@ class Register extends Component {
         // Show spinner when call is made
         this.setState({isLoading: true});
     
-        Axios.post("http://54.90.54.163:8000/users/api/auth/register", payload)
+        Axios.post("http://192.168.1.127:8000/users/api/auth/register", payload)
           .then(onSuccess)
           .catch(onFailure);
       }

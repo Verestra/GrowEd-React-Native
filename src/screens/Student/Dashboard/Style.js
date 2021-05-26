@@ -55,7 +55,34 @@ const styles = StyleSheet.create ({
         lineHeight: 30,
         letterSpacing: 0.5,
         color: '#010620',
-    }
+    },
+    textDate: {
+        fontFamily: 'Kanit-Regular',
+        fontSize: 14,
+        textAlign: 'center',
+        marginBottom: 15
+    },
+    textDateWhite: {
+        fontFamily: 'Kanit-Regular',
+        fontSize: 14,
+        textAlign: 'center',
+        marginBottom: 15,
+        color: '#FFFFFF'
+    },
+    activeDate: {
+        backgroundColor: '#5784BA',
+        borderRadius: 20,
+        width: 30
+    },
+    dateStyle: {
+        width: 30
+    },
+      text: {
+        color: '#F9F9F9',
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 30,
+        marginTop: 'auto'
+      }
     })
 
 export default styles

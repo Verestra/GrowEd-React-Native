@@ -1,13 +1,54 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Image, ScrollView, View, Text, } from 'react-native'
-import { ListItem, Avatar } from 'react-native-elements';
+import { Button, ListItem, Avatar } from 'react-native-elements';
 import styles from './style'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {connect} from 'react-redux';
 import {logoutHandler} from '../../redux/actions/auth';
+import { ImagePicker,launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import axios from 'axios'
 
 
 function Profile (props, {navigation}) {
+    const token = props.authReducers.user.token
+    const [image, setImage] = useState();
+    const updateAvatar = (formData) => {
+        return axios.patch("http://192.168.1.127:8000/users/api/uploadProfile", formData, {
+          headers: {
+            'x-access-token': `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+      };
+
+      const saveHandler = () => {
+        if (!image) {
+          console.log("image can not be empty");
+          return;
+        }
+    
+        const formData = new FormData();
+        formData.append('image', {
+          uri:
+            Platform.OS === 'android'
+              ? image?.uri
+              : image.uri.replace('file://', ''),
+          name: image.fileName,
+          type: 'image/*',
+        });
+        updateAvatar(formData)
+          .then(res => {
+            console.log(res)
+            const msg = res.data.message;
+            setImage(null);
+          })
+          .catch(err => {
+            console.log(err.response.data);
+            const msg = errorFormatter(err);
+            setImage(null);
+          });
+      };
+    console.log(image)
     const onLogoutHandler = () => {
         props.onLogoutHandler();
       };
@@ -47,7 +88,7 @@ function Profile (props, {navigation}) {
             rounded
             source={{
                 uri:
-                'https://i.ibb.co/6vqjwC5/Profile-Picture.png',
+                `http://192.168.1.127:8000/images/${props.authReducers.user.picture}`,
             }}
             />
                 <View style={styles.contentHeader}>
@@ -61,6 +102,40 @@ function Profile (props, {navigation}) {
                 fontFamily: 'Kanit-Medium',
                 padding: 10
             }}>Account</Text>
+            <ListItem bottomDivider>
+                    <Icon onPress={() => { 
+                launchCamera(
+                  {
+                    mediaType: 'photo',
+                    includeBase64: false,
+                    maxHeight: 200,
+                    maxWidth: 200,
+                  },
+                  img => {
+                    setImage(img);
+                  },
+                );
+              }} name={'camera-plus'} size={30} />
+                    <ListItem.Content>
+                    <ListItem.Title style={styles.listTitle}>Change Avatars</ListItem.Title>
+                    </ListItem.Content>
+                    <Icon onPress={() => {
+                launchImageLibrary(
+                  {
+                    mediaType: 'photo',
+                    includeBase64: false,
+                    maxHeight: 200,
+                    maxWidth: 200,
+                  },
+                  img => {
+                    setImage(img);
+                  },
+                );
+              }} name={'image'} size={40} color={'#0000ff'}/>
+              <Icon
+              onPress={saveHandler} 
+              name={'check-circle'} size={35} color={'#69a550'} />
+            </ListItem>
             {   
                 account.map((item, i) => (
                 <ListItem key={i} bottomDivider>
