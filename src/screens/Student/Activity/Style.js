@@ -31,7 +31,8 @@ const styles = StyleSheet.create ({
     },
     containerDetail: {
         marginTop: '22%',
-        padding: 20
+        padding: 20,
+        backgroundColor: '#f9f9f9'
     },
     activeText: {
         fontFamily: 'Montserrat-Medium',
@@ -68,7 +69,22 @@ const styles = StyleSheet.create ({
     fabIcon: { 
         fontSize: 40, 
         color: 'white' 
-      }
+      },
+    textInput : {
+        color: '#000000',
+        fontFamily: 'Montserrat-Regular',
+        fontSize: 15,
+        marginTop: 20
+    },
+    textItem1: {
+        fontFamily: 'Montserrat-SemiBold',
+        fontSize: 15,
+        flex: 2,
+        marginRight: 15,
+        lineHeight: 30,
+        letterSpacing: 0.5,
+        color: '#010620',
+    },
     })
 
 export default styles

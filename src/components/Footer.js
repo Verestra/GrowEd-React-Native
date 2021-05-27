@@ -3,12 +3,8 @@ import * as React from 'react';
 import { Image } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Profile from '../screens/Profile';
-import ForYou from '../screens/Student/Dashboard/ForYou'
-import Dashboard from '../screens/Student/Dashboard/Dashboard'
-import Register from '../screens/Register';
-import ResetPassword from '../screens/Reset-Password/ResetPassword';
-import ResetPasswordNew from '../screens/Reset-Password/ResetPasswordNew'
 import Chat from '../screens/Chats/Chat'
+import ForYou from '../screens/Student/Dashboard/ForYou'
 import Activity from '../screens/Student/Activity/Activity'
 const Tab = createBottomTabNavigator();
 

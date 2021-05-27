@@ -47,11 +47,12 @@ function ForYou(props, { navigation}) {
           .then(res => setStudentClass(res.data.data))
           .catch(err => console.log(err));
       }, []);
+      console.log(studentClass)
       useEffect(() => {
         const token = props.authReducers.user.token;
         axios
           .get(
-            "http://192.168.1.127:8000/courses/api/myClassFasilitator/?page=1&limit=10",
+            "http://192.168.1.127:8000/courses/api/myClassFasilitator/?page=1&limit=5",
             {
               headers: {'x-access-token': `Bearer ${token}`},
             },

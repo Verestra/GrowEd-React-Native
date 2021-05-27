@@ -7,6 +7,7 @@ import { ListItem, Button, Avatar, LinearProgress, CheckBox } from 'react-native
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/native';
 import Unorderedlist from 'react-native-unordered-list';
+import {connect} from 'react-redux';
 
 function ActivityHeader() {
     const navigation = useNavigation()
@@ -101,4 +102,11 @@ function ClassProgress({ navigation}) {
      );
      }
 
-export default ClassProgress
+     const mapStateToProps = state => {
+        return {
+          authReducers: state.authReducers,
+        };
+      };
+      const ConnectedClassProgress = connect(mapStateToProps)(ClassProgress);
+  
+      export default ConnectedClassProgress;

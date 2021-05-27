@@ -14,16 +14,16 @@ import ResetPassword from './screens/Reset-Password/ResetPassword';
 import ResetPasswordOtp from './screens/Reset-Password/ResetPasswordOtp';
 import ResetPasswordNew from './screens/Reset-Password/ResetPasswordNew';
 import ResetPasswordSuccess from './screens/Reset-Password/ResetPasswordSucces';
-import Profile from './screens/Profile';
 import FooterTab from './components/Footer';
 import Dashboard from './screens/Student/Dashboard/Dashboard';
-import ForYou from './screens/Student/Dashboard/Dashboard';
-import Chat from './screens/Chats/Chat';
+import Chat from './screens/Chats/Chat'
 import ChooseFriends from './screens/Chats/ChooseFriends'
-import Activity from './screens/Student/Activity/Activity';
 import MyClass from './screens/Student/Activity/MyClass';
 import ClassDetail from './screens/Student/Activity/ClassDetail';
 import ClassProgress from './screens/Student/Activity/ClassProgress';
+import Activity from './screens/Student/Activity/Activity'
+import ForYou from './screens/Student/Dashboard/ForYou'
+import Member from './screens/Student/Activity/Member'
 
 
   class App extends Component 
@@ -80,7 +80,18 @@ import ClassProgress from './screens/Student/Activity/ClassProgress';
                     <Screen  name="ResetPasswordNew" component={ResetPasswordNew} />
                     <Screen  name="ResetPasswordSuccess" component={ResetPasswordSuccess} />
                     </> ) : (
-                    <Screen  name="FooterTab" component={FooterTab} />                  
+                    <>
+                    <Screen  name="FooterTab" component={FooterTab} />
+                    <Screen  name="Dashboard" component={Dashboard} />
+                    <Screen  name="ForYou" component={ForYou} />
+                    <Screen  name="Chat" component={Chat} /> 
+                    <Screen  name="ChooseFriends" component={ChooseFriends} /> 
+                    <Screen  name="Activity" component={Activity} /> 
+                    <Screen  name="MyClass" component={MyClass} />
+                    <Screen  name="ClassDetail" component={ClassDetail} /> 
+                    <Screen  name="ClassProgress" component={ClassProgress} />
+                    <Screen  name="Member" component={Member} />       
+                    </>                
                     )}
                   </Navigator>
                   {  

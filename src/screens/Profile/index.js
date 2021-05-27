@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import { Image, ScrollView, View, Text, } from 'react-native'
+import React, {useState, useRef, useE} from 'react'
+import { Alert,Image, ScrollView, View, Text, } from 'react-native'
 import { Button, ListItem, Avatar } from 'react-native-elements';
 import styles from './style'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -7,11 +7,17 @@ import {connect} from 'react-redux';
 import {logoutHandler} from '../../redux/actions/auth';
 import { ImagePicker,launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import axios from 'axios'
-
+import Modal from 'react-native-modal';
 
 function Profile (props, {navigation}) {
+
     const token = props.authReducers.user.token
+    const [isModalVisible, setModalVisible] = useState(false);
     const [image, setImage] = useState();
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+      };
     const updateAvatar = (formData) => {
         return axios.patch("http://192.168.1.127:8000/users/api/uploadProfile", formData, {
           headers: {
@@ -44,13 +50,13 @@ function Profile (props, {navigation}) {
           })
           .catch(err => {
             console.log(err.response.data);
-            const msg = errorFormatter(err);
             setImage(null);
           });
       };
     console.log(image)
     const onLogoutHandler = () => {
         props.onLogoutHandler();
+        setModalVisible(!isModalVisible);
       };
     const account = [
         {
@@ -76,21 +82,23 @@ function Profile (props, {navigation}) {
             icon: 'server'
           },
       ]
-      
-      
     return (
         <ScrollView>
             <View style={styles.headerContainer}>
             <Text style={styles.headerText}>Profile</Text>
             <View style={{display: 'flex', flexDirection:'row'}}>
-            <Avatar
-            size={56}
-            rounded
-            source={{
-                uri:
-                `http://192.168.1.127:8000/images/${props.authReducers.user.picture}`,
-            }}
-            />
+            {props.authReducers.user.picture !== null || image ? (
+                <Avatar
+                size={56}
+                rounded
+                source={{
+                    uri:
+                    `http://192.168.1.127:8000/images/${props.authReducers.user.picture}`,
+                }}
+                />
+            ) : (
+                <Avatar overlayContainerStyle={{backgroundColor: 'red'}} activeOpacity={0.7} size={56} rounded title={props.authReducers.user.username.slice(0, 1)} />
+            )}
                 <View style={styles.contentHeader}>
                     <Text style={styles.nameText}>{props.authReducers.user.username}</Text>
                     <Text style={styles.status}>Online</Text>
@@ -180,7 +188,18 @@ function Profile (props, {navigation}) {
                 <ListItem bottomDivider style={{marginBottom: 50}}>
                     <Image source={require('../../assets/img/logout-icon.png')}/>
                     <ListItem.Content>
-                    <ListItem.Title onPress={onLogoutHandler} style={styles.logoutTitle}>Logout</ListItem.Title>
+                    <ListItem.Title onPress={toggleModal}  style={styles.logoutTitle}>Logout</ListItem.Title>
+                    <Modal isVisible={isModalVisible}>
+                        <View style={{flex: 1, justifyContent: "center"}}>
+                            <View style={{backgroundColor: "#f9f9f9f9", height: 150, display:'flex', justifyContent:'center'}}>
+                            <Text style={{ fontFamily: 'Kanit-Medium', fontSize: 16,textAlign: 'center', margin: 20}}>Are You Sure want To Logout?</Text>
+                            <View style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly'}}>
+                                <Button title="No" buttonStyle={{backgroundColor: "#57BA61", width: 100, borderRadius: 20}} onPress={toggleModal} />
+                                <Button title="Yes" buttonStyle={{backgroundColor: "red", width: 100, borderRadius: 20}} onPress={onLogoutHandler} />
+                            </View>
+                            </View>
+                        </View>
+                    </Modal>
                     </ListItem.Content>
                 </ListItem>
             </View>
