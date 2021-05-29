@@ -40,11 +40,7 @@ function Member(props) {
           avatar_url: 'https://i.ibb.co/nfXkGtQ/ava-rio.png',
 
         },
-        {
-            name: 'Discussion Group 21 (5)',
-            avatar_url: 'https://i.ibb.co/gM0WWx9/ava-group21.png',
-            
-          },
+       
           {
             name: 'Isyana Sarasvati',
             avatar_url: 'https://i.ibb.co/Bn7BKVX/ava-isyana.png',
@@ -53,11 +49,6 @@ function Member(props) {
           {
             name: 'Tompi',
             avatar_url: 'https://i.ibb.co/PxPr87w/ava-tompi.png',
-            
-          },
-          {
-            name: 'You, Tompi, ',
-            avatar_url: 'https://i.ibb.co/gPcLqXH/ava-group.png',
             
           },
           {
@@ -111,7 +102,7 @@ function Member(props) {
                         <View style={{flex: 1,justifyContent: "center"}}>
                             <View style={{borderTopEndRadius: 20,borderTopStartRadius: 20, backgroundColor: "#f9f9f9", display:'flex', padding: 30, flexDirection: 'row'}}>
                                 <Avatar size="large" rounded source={require("../../../assets/img/avatar/ava-rio.png")} />
-                                <Text style={{fontFamily: 'Kanit-Regular', fontSize: 18, margin: 25}}>Deddy Corbuzier</Text>
+                                <Text style={{fontFamily: 'Kanit-Regular', fontSize: 18, margin: 25}}>Rio Dewanto</Text>
                             </View>
                             <View style={{backgroundColor: "#f9f9f9", display: 'flex', flexDirection:'row', justifyContent: 'space-between'}}>
                                 <Text style={{fontFamily: 'Kanit-Medium', color: '#000000', fontSize: 18, margin: 25}}>Topic</Text>

@@ -11,24 +11,7 @@ import axios from 'axios'
 import Swiper from 'react-native-swiper'
 
 
-function DashboardHeader({ navigation}) {
-    return (
-        <View style={styles.headerContainer}>
-            <View style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
-            <Text style={styles.headerText}>Welcome back,</Text>
-            <Image source={require('../../../assets/img/notif-icon.png')}/>
-            </View>
-            <Text style={styles.headerName}>Emir</Text>
-            <SearchBar
-                placeholder="Looking for Something?"
-                lightTheme
-                round
-                inputContainerStyle={{backgroundColor: '#E5E6EB'}}
-                containerStyle={{backgroundColor: '#5784BA', borderTopWidth: 0, borderBottomWidth: 0, marginTop: 10}}
-            />
-        </View>
-    )
- }
+
 function ForYou(props, { navigation}) {
     let [studentClass, setStudentClass] = useState([]);
     let [fasilitatorClass, setFasilitatorClass] = useState([]);
@@ -66,7 +49,20 @@ function ForYou(props, { navigation}) {
        const vaccineImage = { uri : "https://images.unsplash.com/photo-1579165466991-467135ad3110?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"}
         return (
             <ScrollView style={{backgroundColor: '#E6EDF6'}}>
-            <DashboardHeader />
+            <View style={styles.headerContainer}>
+            <View style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
+            <Text style={styles.headerText}>Welcome back,</Text>
+            <Image source={require('../../../assets/img/notif-icon.png')}/>
+            </View>
+            <Text style={styles.headerName}>{props.authReducers.user.username}</Text>
+            <SearchBar
+                placeholder="Looking for Something?"
+                lightTheme
+                round
+                inputContainerStyle={{backgroundColor: '#E5E6EB'}}
+                containerStyle={{backgroundColor: '#5784BA', borderTopWidth: 0, borderBottomWidth: 0, marginTop: 10}}
+            />
+        </View>
             <Swiper height={350} containerStyle={{padding: 5}} autoplay={true} style={styles.wrapper}>     
                 <ImageBackground source={microsoftImage} style={{flex: 1, resizeMode: "cover", justifyContent: "center", padding: 50}} imageStyle={{borderRadius:20, margin: 20}}>
                     <Text style={styles.text}>Microsoft try to implement work from home forever</Text>

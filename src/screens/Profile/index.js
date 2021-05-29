@@ -1,5 +1,5 @@
 import React, {useState, useRef, useE} from 'react'
-import { Alert,Image, ScrollView, View, Text, } from 'react-native'
+import { ToastAndroid,Image, ScrollView, View, Text, } from 'react-native'
 import { Button, ListItem, Avatar } from 'react-native-elements';
 import styles from './style'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -29,8 +29,12 @@ function Profile (props, {navigation}) {
 
       const saveHandler = () => {
         if (!image) {
-          console.log("image can not be empty");
-          return;
+            return ToastAndroid.showWithGravityAndOffset(
+                "Image Can't be empty",
+                ToastAndroid.LONG,
+                ToastAndroid.TOP,
+                25,
+                350)
         }
     
         const formData = new FormData();
@@ -44,9 +48,13 @@ function Profile (props, {navigation}) {
         });
         updateAvatar(formData)
           .then(res => {
-            console.log(res)
-            const msg = res.data.message;
             setImage(null);
+            return ToastAndroid.showWithGravityAndOffset(
+                "Profile Succesfully Updated",
+                ToastAndroid.LONG,
+                ToastAndroid.TOP,
+                25,
+                350)
           })
           .catch(err => {
             console.log(err.response.data);
@@ -93,7 +101,7 @@ function Profile (props, {navigation}) {
                 rounded
                 source={{
                     uri:
-                    `http://192.168.1.127:8000/images/${props.authReducers.user.picture}`,
+                     `http://192.168.1.127:8000/images/${props.authReducers.user.picture}` ,
                 }}
                 />
             ) : (
