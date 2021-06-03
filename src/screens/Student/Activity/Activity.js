@@ -59,7 +59,7 @@ function Activity(props) {
     const token = props.authReducers.user.token
     const [addClass, setAddClass] = useState();
     const addNewClass = (formData) => {
-        return axios.post("http://192.168.1.127:8000/courses/api/addClass", formData, {
+        return axios.post("http://192.168.1.100:8000/courses/api/addClass", formData, {
           headers: {
             'x-access-token': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data',
@@ -143,7 +143,7 @@ function Activity(props) {
     useEffect(() => {
         axios
           .get(
-            "http://192.168.1.127:8000/courses/api/scoremyclass/",
+            "http://192.168.1.100:8000/courses/api/scoremyclass/",
             {
               headers: {'x-access-token': `Bearer ${token}`},
             },
@@ -154,7 +154,7 @@ function Activity(props) {
       useEffect(() => {
         axios
           .get(
-            "http://192.168.1.127:8000/courses/api/myClassFasilitator/?page=1&limit=3",
+            "http://192.168.1.100:8000/courses/api/myClassFasilitator/?page=1&limit=3",
             {
               headers: {'x-access-token': `Bearer ${token}`},
             },
@@ -166,7 +166,7 @@ function Activity(props) {
         const id_user = props.authReducers.user.id_user;
         axios
           .post(
-            "http://192.168.1.127:8000/courses/api/registerClass",
+            "http://192.168.1.100:8000/courses/api/registerClass",
             {studentId : id_user, courseId: courses.id_courses},
           )
           .then(res => {
@@ -183,7 +183,7 @@ function Activity(props) {
         this.scroll.scrollTo({x: 0, y: 0, animated: true});
      }
     getData = async () => {
-        const apiURL = "http://192.168.1.127:8000/courses/api/all?search&limit=5&sort=&page=" + pageCurrent
+        const apiURL = "http://192.168.1.100:8000/courses/api/all?search&limit=5&sort=&page=" + pageCurrent
         setTimeout( () => {
             fetch(apiURL).then((res) => res.json ())
             .then((resJson) => {

@@ -19,7 +19,7 @@ function Profile (props, {navigation}) {
         setModalVisible(!isModalVisible);
       };
     const updateAvatar = (formData) => {
-        return axios.patch("http://192.168.1.127:8000/users/api/uploadProfile", formData, {
+        return axios.patch("http://192.168.1.100:8000/users/api/uploadProfile", formData, {
           headers: {
             'x-access-token': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data',
@@ -101,7 +101,7 @@ function Profile (props, {navigation}) {
                 rounded
                 source={{
                     uri:
-                     `http://192.168.1.127:8000/images/${props.authReducers.user.picture}` ,
+                     `http://192.168.1.100:8000/images/${props.authReducers.user.picture}` ,
                 }}
                 />
             ) : (

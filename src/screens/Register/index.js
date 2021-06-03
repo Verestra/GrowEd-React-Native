@@ -111,7 +111,7 @@ class Register extends Component {
         // Show spinner when call is made
         this.setState({isLoading: true});
     
-        Axios.post("http://192.168.1.127:8000/users/api/auth/register", payload)
+        Axios.post("http://192.168.1.100:8000/users/api/auth/register", payload)
           .then(onSuccess)
           .catch(onFailure);
       }

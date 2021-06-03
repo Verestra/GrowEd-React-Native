@@ -6,7 +6,7 @@ export function loginHandler(data) {
         type: 'LOGIN_PENDING',
       });
       axios
-        .post("http://192.168.1.127:8000/users/api/auth/login", data)
+        .post("http://192.168.1.100:8000/users/api/auth/login", data)
         .then(res => {
           dispatch({type: 'LOGIN_SUCCESS', payload: res.data});
         })

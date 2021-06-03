@@ -22,7 +22,7 @@ function ForYou(props, { navigation}) {
         const token = props.authReducers.user.token;
         axios
           .get(
-            "http://192.168.1.127:8000/courses/api/studentscore/",
+            "http://192.168.1.100:8000/courses/api/studentscore/",
             {
               headers: {'x-access-token': `Bearer ${token}`},
             },
@@ -35,7 +35,7 @@ function ForYou(props, { navigation}) {
         const token = props.authReducers.user.token;
         axios
           .get(
-            "http://192.168.1.127:8000/courses/api/myClassFasilitator/?page=1&limit=5",
+            "http://192.168.1.100:8000/courses/api/myClassFasilitator/?page=1&limit=5",
             {
               headers: {'x-access-token': `Bearer ${token}`},
             },

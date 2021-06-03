@@ -46,7 +46,7 @@ function ChatHeader() {
           {
             name: 'Isyana Sarasvati',
             avatar_url: 'https://i.ibb.co/Bn7BKVX/ava-isyana.png',
-          },
+          },  
           {
             name: 'Tompi',
             avatar_url: 'https://i.ibb.co/PxPr87w/ava-tompi.png',
